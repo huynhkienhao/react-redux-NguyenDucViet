@@ -4,31 +4,23 @@ import './App.css';
 
 class App extends Component {
   render() {
-    // Đối tượng
-    // let p1 = {
-    //   ten: 'màn hình',
-    //   gia: 90
-    // }
-    // console.log('p1 ', p1);
+    let b1 = {
+      num: [22, 9, 2002],
+      status: true
+    }
 
-    // let p2 = { ...p1 };
+    // let b2 = { ...b1, status: false, num: [18, 9, 2003] };
 
-    // p2.gia = 100;
+    // b2.status = false;
 
-    // console.log('p2 ', p2);
-    // console.log('p1 ', p1);
+    // console.log('b2 ', b2);
 
-    // Mảng
-    let x1 = [3, 5, 6, 7];
+    // Thêm mới
+    let b3 = { ...b1, num: [...b1.num, 2000] };
 
-    console.log('x1 ', x1);
+    b3.num[3] = 100;
 
-    let x2 = [...x1];
-
-    x2[0] = 100;
-
-    console.log('x1 ', x1);
-    console.log('x2 ', x2);
+    console.log('b3 ', b3);
 
     return (
       <div className="App">
