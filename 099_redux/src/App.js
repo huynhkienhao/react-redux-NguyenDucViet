@@ -1,26 +1,34 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { configureStore } from '@reduxjs/toolkit';
 
 class App extends Component {
   render() {
-    let b1 = {
-      num: [22, 9, 2002],
-      status: true
+
+    const initialState = {
+      num: ['Bàn phím', 'Chuột', 'Tai nghe'],
+      editStatus: true
     }
 
-    // let b2 = { ...b1, status: false, num: [18, 9, 2003] };
+    const reducer = (state = initialState, action) => {
+      switch (action.type) {
+        case 'THÊM_LOA_MỚI':
+          return { ...state, num: [...state.num, 'Loa'], editStatus: !state.editStatus }
 
-    // b2.status = false;
+        default:
+          break;
+      }
+      return state;
+    }
 
-    // console.log('b2 ', b2);
+    const store = configureStore({ reducer });
 
-    // Thêm mới
-    let b3 = { ...b1, num: [...b1.num, 2000] };
+    console.log('store: ', store.getState());
 
-    b3.num[3] = 100;
+    store.dispatch({ type: 'THÊM_LOA_MỚI' });
 
-    console.log('b3 ', b3);
+    console.log('store: ', store.getState());
 
     return (
       <div className="App">
