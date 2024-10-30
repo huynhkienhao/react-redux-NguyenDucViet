@@ -1,20 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 const initialState = {
-    num: ['Bàn phím', 'Chuột', 'Tai nghe'],
+    number: ['Bàn phím', 'Chuột', 'Tai nghe'],
     editStatus: true
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case 'THÊM_LOA_MỚI':
-            return { ...state, num: [...state.num, 'Loa'] }
+            return { ...state, number: [...state.number, 'Loa'] }
 
         case 'ADD_ITEM':
-            return { ...state, num: [...state.num, action.addItem] }
+            return { ...state, number: [...state.number, action.addItem] }
 
         case 'REMOVE_ITEM':
-            return { ...state, num: state.num.filter((value, index) => index !== action.removeItem) }
+            return { ...state, number: state.number.filter((value, index) => index !== action.removeItem) }
 
         default:
             return state;
