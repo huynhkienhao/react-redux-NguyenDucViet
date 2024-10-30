@@ -14,12 +14,17 @@ class App extends Component {
     const reducer = (state = initialState, action) => {
       switch (action.type) {
         case 'THÊM_LOA_MỚI':
-          return { ...state, num: [...state.num, 'Loa'], editStatus: !state.editStatus }
+          return { ...state, num: [...state.num, 'Loa'] }
+
+        case 'ADD_ITEM':
+          return { ...state, num: [...state.num, action.addItem] }
+
+        case 'REMOVE_ITEM':
+          return { ...state, num: state.num.filter((value, index) => index !== action.removeItem) }
 
         default:
-          break;
+          return state;
       }
-      return state;
     }
 
     const store = configureStore({ reducer });
@@ -28,7 +33,23 @@ class App extends Component {
 
     store.dispatch({ type: 'THÊM_LOA_MỚI' });
 
-    console.log('store: ', store.getState());
+    console.log('store thêm loa mới không dùng action: ', store.getState());
+
+    // Thêm item
+    store.dispatch({
+      type: 'ADD_ITEM',
+      addItem: 'Màn hình'
+    });
+
+    console.log('store add: ', store.getState());
+
+    // Xóa item
+    store.dispatch({
+      type: 'REMOVE_ITEM',
+      removeItem: 1
+    })
+
+    console.log('store remove: ', store.getState());
 
     return (
       <div className="App">
