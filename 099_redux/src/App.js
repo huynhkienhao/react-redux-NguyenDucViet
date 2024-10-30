@@ -29,11 +29,11 @@ class App extends Component {
 
     const store = configureStore({ reducer });
 
-    console.log('store: ', store.getState());
+    store.subscribe(() => {
+      console.log(JSON.stringify(store.getState()));
+    })
 
     store.dispatch({ type: 'THÊM_LOA_MỚI' });
-
-    console.log('store thêm loa mới không dùng action: ', store.getState());
 
     // Thêm item
     store.dispatch({
@@ -41,15 +41,11 @@ class App extends Component {
       addItem: 'Màn hình'
     });
 
-    console.log('store add: ', store.getState());
-
     // Xóa item
     store.dispatch({
       type: 'REMOVE_ITEM',
       removeItem: 1
     })
-
-    console.log('store remove: ', store.getState());
 
     return (
       <div className="App">
