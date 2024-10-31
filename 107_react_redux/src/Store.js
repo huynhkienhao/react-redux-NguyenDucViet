@@ -1,33 +1,19 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import numReducer from './Reducers/numReducer';
+import editStatusReducer from './Reducers/editStatusReducer';
 
-const initialState = {
-    number: ['Bàn phím', 'Chuột', 'Tai nghe'],
-    editStatus: true
-}
+const allReducers = combineReducers({
+    num: numReducer,
+    editStatus: editStatusReducer
+})
 
-const reducer = (state = initialState, action) => {
-    switch (action.type) {
-        case 'THÊM_LOA_MỚI':
-            return { ...state, number: [...state.number, 'Loa'] }
-
-        case 'ADD_ITEM':
-            return { ...state, number: [...state.number, action.addItem] }
-
-        case 'REMOVE_ITEM':
-            return { ...state, number: state.number.filter((value, index) => index !== action.removeItem) }
-
-        default:
-            return state;
-    }
-}
-
-const store = configureStore({ reducer });
+const store = configureStore({ reducer: allReducers });
 
 store.subscribe(() => {
     console.log(JSON.stringify(store.getState()));
 })
 
-store.dispatch({ type: 'THÊM_LOA_MỚI' });
+store.dispatch({ type: 'CHANGE_STATUS' });
 
 // Thêm item
 store.dispatch({
