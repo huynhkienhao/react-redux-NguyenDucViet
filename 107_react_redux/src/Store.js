@@ -18,13 +18,13 @@ store.dispatch({ type: 'CHANGE_STATUS' });
 // Thêm item
 store.dispatch({
     type: 'ADD_ITEM',
-    addItem: 'Màn hình'
+    payload: 'Màn hình'
 });
 
 // Xóa item
 store.dispatch({
     type: 'REMOVE_ITEM',
-    removeItem: 1
+    payload: 1
 })
 
 export default store;
