@@ -1,26 +1,51 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { configureStore } from '@reduxjs/toolkit';
 
 class App extends Component {
   render() {
-    let b1 = {
-      num: [22, 9, 2002],
-      status: true
+
+    const initialState = {
+      num: ['Bàn phím', 'Chuột', 'Tai nghe'],
+      editStatus: true
     }
 
-    // let b2 = { ...b1, status: false, num: [18, 9, 2003] };
+    const reducer = (state = initialState, action) => {
+      switch (action.type) {
+        case 'THÊM_LOA_MỚI':
+          return { ...state, num: [...state.num, 'Loa'] }
 
-    // b2.status = false;
+        case 'ADD_ITEM':
+          return { ...state, num: [...state.num, action.addItem] }
 
-    // console.log('b2 ', b2);
+        case 'REMOVE_ITEM':
+          return { ...state, num: state.num.filter((value, index) => index !== action.removeItem) }
 
-    // Thêm mới
-    let b3 = { ...b1, num: [...b1.num, 2000] };
+        default:
+          return state;
+      }
+    }
 
-    b3.num[3] = 100;
+    const store = configureStore({ reducer });
 
-    console.log('b3 ', b3);
+    store.subscribe(() => {
+      console.log(JSON.stringify(store.getState()));
+    })
+
+    store.dispatch({ type: 'THÊM_LOA_MỚI' });
+
+    // Thêm item
+    store.dispatch({
+      type: 'ADD_ITEM',
+      addItem: 'Màn hình'
+    });
+
+    // Xóa item
+    store.dispatch({
+      type: 'REMOVE_ITEM',
+      removeItem: 1
+    })
 
     return (
       <div className="App">
