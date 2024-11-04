@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import News from './News';
+import { connect } from 'react-redux';
 
 class App extends Component {
   render() {
@@ -11,9 +12,16 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <News />
         </header>
+        {this.props.dulieu}
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    dulieu: state.num
+  }
+}
+
+export default connect(mapStateToProps)(App);
