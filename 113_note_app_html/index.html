@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark px-4" style="background-color: black;">
+            <a class="navbar-brand" href="https://fedu.vn/">Fedu</a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation"></button>
+            <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavId">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Xem danh sách NOTE</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+
+                    <div id="noteList" role="tablist" aria-multiselectable="true">
+
+                        <div class="card">
+                            <div class="card-header" role="tab" id="note1">
+                                <h5 class="mb-0">
+                                    <a data-parent="#noteList" href="#noteContent1" aria-expanded="true"
+                                        aria-controls="noteContent1" data-bs-toggle="collapse">
+                                        Ghi chú ngày 06/11/2024
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="noteContent1" class="collapse in" role="tabpanel" aria-labelledby="note1">
+                                <div class="card-body">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Error fugiat eveniet hic
+                                    quia facilis beatae magnam porro alias repudiandae pariatur numquam veniam, culpa
+                                    voluptas adipisci iure impedit nesciunt assumenda amet!
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header" role="tab" id="note2">
+                                <h5 class="mb-0">
+                                    <a data-parent="#noteList" href="#noteContent2" aria-expanded="true"
+                                        aria-controls="noteContent2" data-bs-toggle="collapse">
+                                        Ghi chú ngày 05/11/2024
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="noteContent2" class="collapse in" role="tabpanel" aria-labelledby="note2">
+                                <div class="card-body">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Error fugiat eveniet hic
+                                    quia facilis beatae magnam porro alias repudiandae pariatur numquam veniam, culpa
+                                    voluptas adipisci iure impedit nesciunt assumenda amet!
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-4">
+
+                    <h3>SỬA NỘI DUNG NOTE</h3>
+                    <div class="form-group">
+                        <label for="noteTitle">Tiêu đề note</label>
+                        <input type="text" class="form-control" name="noteTitle" id="noteTitle"
+                            aria-describedby="helpIdNoteTitle" placeholder="Tiêu đề note">
+                        <small id="helpIdNoteTitle" class="form-text text-muted">Điền tiêu đề vào đây</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="noteContent">Nội dung note</label>
+                        <textarea type="text" class="form-control" name="noteContent" id="noteContent"
+                            aria-describedby="helpIdNoteContent" placeholder="Nội dung note"></textarea>
+                        <small id="helpIdNoteContent" class="form-text text-muted">Điền nội dung vào đây</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <!-- place footer here -->
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
