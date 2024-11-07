@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getDatabase, ref, get, set } from "firebase/database";
+// import { ref, get, set } from "firebase/database";
+// import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
     apiKey: "AIzaSyC9a_wJVWNYt5tFPLii5dS6zds4pnQW_go",
@@ -15,9 +16,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const firebaseConnect = getAnalytics(app);
 
-const database = getDatabase(app);
+export const firebaseConnect = app;
+export const analytics = getAnalytics(app);
+
+// const database = getDatabase(app);
 
 // Lấy dữ liệu
 // const data = ref(database, 'dataForNote/');
@@ -26,9 +29,11 @@ const database = getDatabase(app);
 // });
 
 // Sửa dữ liệu
-const data = ref(database, 'dataForNote/node2');
-set(data, {
-    id: 3
-}).then(() => {
-    console.log('Cập nhật dữ liệu thành công');
-})
+// const data = ref(database, 'dataForNote/node2');
+// set(data, {
+//     id: 2,
+//     title: 'Ghi chú ngày 08/11/2024',
+//     content: 'Hoàn thành task báo cáo'
+// }).then(() => {
+//     console.log('Cập nhật dữ liệu thành công');
+// })

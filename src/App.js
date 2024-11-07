@@ -2,11 +2,22 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { firebaseConnect } from './firebaseConnect';
+import { getDatabase, ref, push } from "firebase/database";
 
 class App extends Component {
-  render() {
-    console.log(firebaseConnect);
 
+  pushData = () => {
+    const database = getDatabase(firebaseConnect);
+    const connectData = ref(database, 'dataForNote');
+    push(connectData, {
+      title: 'Ghi chú số 3',
+      content: 'Nội dung ghi chú số 3'
+    }).then(() => {
+      console.log('Thêm dữ liệu thành công');
+    })
+  }
+
+  render() {
     return (
       <div className="App" >
         <header className="App-header">
@@ -14,14 +25,7 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <button onClick={() => this.pushData()}>Click vào để thêm mới với hàm push</button>
         </header>
       </div>
     );
