@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getDatabase, ref, get } from "firebase/database";
 
 const firebaseConfig = {
     apiKey: "AIzaSyC9a_wJVWNYt5tFPLii5dS6zds4pnQW_go",
@@ -14,5 +15,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 export const firebaseConnect = getAnalytics(app);
+
+const database = getDatabase(app);
+
+const data = ref(database, 'dataForNote/');
+get(data).then((snapshot) => {
+    console.log(snapshot.val());
+});
