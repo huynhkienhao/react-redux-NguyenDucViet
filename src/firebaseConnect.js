@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getDatabase, ref, get } from "firebase/database";
+import { getDatabase, ref, get, set } from "firebase/database";
 
 const firebaseConfig = {
     apiKey: "AIzaSyC9a_wJVWNYt5tFPLii5dS6zds4pnQW_go",
@@ -19,7 +19,16 @@ export const firebaseConnect = getAnalytics(app);
 
 const database = getDatabase(app);
 
-const data = ref(database, 'dataForNote/');
-get(data).then((snapshot) => {
-    console.log(snapshot.val());
-});
+// Lấy dữ liệu
+// const data = ref(database, 'dataForNote/');
+// get(data).then((snapshot) => {
+//     console.log(snapshot.val());
+// });
+
+// Sửa dữ liệu
+const data = ref(database, 'dataForNote/node2');
+set(data, {
+    id: 3
+}).then(() => {
+    console.log('Cập nhật dữ liệu thành công');
+})
