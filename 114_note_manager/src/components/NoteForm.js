@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { getDatabase, ref, push } from "firebase/database";
+import { noteData } from './firebaseConnect';
 
 class NoteForm extends Component {
     constructor(props) {
@@ -25,11 +27,21 @@ class NoteForm extends Component {
     addData = (title, content) => {
         let item = {};
 
-        item.title = title;
-        item.content = content;
+        item.noteTitle = title;
+        item.contnoteContentent = content;
 
-        console.log(item);
+        this.props.getData(item);
+    }
 
+    pushData = (title, content) => {
+        const database = getDatabase(noteData);
+        const connectData = ref(database, 'dataForNote');
+        push(connectData, {
+            title: title,
+            content: content
+        }).then(() => {
+            console.log('Thêm dữ liệu thành công');
+        })
     }
     render() {
         return (
