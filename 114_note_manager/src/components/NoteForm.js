@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getDatabase, ref, push } from "firebase/database";
 import { noteData } from './firebaseConnect';
+import { connect } from 'react-redux';
 
 class NoteForm extends Component {
     constructor(props) {
@@ -25,12 +26,13 @@ class NoteForm extends Component {
     }
 
     addData = (title, content) => {
-        let item = {};
+        // let item = {};
 
-        item.noteTitle = title;
-        item.contnoteContentent = content;
+        // item.noteTitle = title;
+        // item.contnoteContentent = content;
 
-        this.props.getData(item);
+        // this.props.getData(item);
+        this.props.addDataStore();
     }
 
     pushData = (title, content) => {
@@ -81,4 +83,19 @@ class NoteForm extends Component {
     }
 }
 
-export default NoteForm;
+const mapStateToProps = (state, ownProps) => {
+    return {
+        testThoi: state.testConnect
+    }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        addDataStore: () => {
+            dispatch({ type: "ADD_DATA" })
+        }
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
