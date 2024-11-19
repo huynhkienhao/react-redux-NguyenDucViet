@@ -1,4 +1,4 @@
-import noteData from './firebaseConnect';
+// import noteData from './firebaseConnect';
 import { createStore } from 'redux';
 
 // Khởi tạo reducer
@@ -8,7 +8,7 @@ const noteInitialState = {
 const allReducer = (state = noteInitialState, action) => {
     switch (action.type) {
         case "ADD_DATA":
-            console.log("Kết nối thành công với addData");
+            console.log("Kết nối thành công với addData, biến nhận vào là: ", action.nhanVaoItem);
             return state;
         default:
             return state;

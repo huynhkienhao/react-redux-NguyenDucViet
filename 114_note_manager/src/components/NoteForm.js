@@ -16,9 +16,6 @@ class NoteForm extends Component {
         const name = event.target.name;
         const value = event.target.value;
 
-        console.log(name);
-        console.log(value);
-
         this.setState({
             [name]: value
         });
@@ -26,13 +23,14 @@ class NoteForm extends Component {
     }
 
     addData = (title, content) => {
-        // let item = {};
+        let item = {};
 
-        // item.noteTitle = title;
-        // item.contnoteContentent = content;
+        item.noteTitle = title;
+        item.contnoteContentent = content;
 
         // this.props.getData(item);
-        this.props.addDataStore();
+        item = JSON.stringify(item);
+        this.props.addDataStore(item);
     }
 
     pushData = (title, content) => {
@@ -91,8 +89,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        addDataStore: () => {
-            dispatch({ type: "ADD_DATA" })
+        addDataStore: (nhanVaoItem) => {
+            dispatch({ type: "ADD_DATA", nhanVaoItem })
         }
     }
 }
