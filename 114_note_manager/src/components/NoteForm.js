@@ -28,8 +28,6 @@ class NoteForm extends Component {
         item.noteTitle = title;
         item.contnoteContentent = content;
 
-        // this.props.getData(item);
-        item = JSON.stringify(item);
         this.props.addDataStore(item);
     }
 
