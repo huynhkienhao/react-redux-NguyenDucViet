@@ -3,8 +3,15 @@ import './App.css';
 import NoteList from './NoteList';
 import NoteForm from './NoteForm';
 import Nav from './Nav';
+import { connect } from 'react-redux';
 
 class App extends Component {
+
+  showForm = () => {
+    if (this.props.isEdit) {
+      return <NoteForm />
+    }
+  }
   render() {
     return (
       <div>
@@ -12,7 +19,7 @@ class App extends Component {
         <div className='container'>
           <div className='row mt-4'>
             <NoteList />
-            <NoteForm />
+            { this.showForm() }
           </div>
         </div>
       </div>
@@ -20,4 +27,20 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isEdit: state.isEdit
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeEditStatus: () => {
+      dispatch({
+        type: "CHANGE_EDIT_STATUS"
+      })
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
