@@ -4,7 +4,8 @@ import { push } from "firebase/database";
 
 // Khởi tạo reducer
 const noteInitialState = {
-    isEdit: false
+    isEdit: false,
+    editItem: {},
 };
 
 const allReducer = (state = noteInitialState, action) => {
@@ -15,6 +16,8 @@ const allReducer = (state = noteInitialState, action) => {
             return state;
         case "CHANGE_EDIT_STATUS":           
             return {...state, isEdit: !state.isEdit};
+        case "GET_EDIT_DATA":           
+            return {...state, editItem: action.editObject};
         default:
             return state;
     }
@@ -22,5 +25,10 @@ const allReducer = (state = noteInitialState, action) => {
 
 // Khởi tạo store
 const store = createStore(allReducer);
+
+// Subscribe
+store.subscribe(() => {
+    console.log(JSON.stringify(store.getState()));
+})
 
 export default store;

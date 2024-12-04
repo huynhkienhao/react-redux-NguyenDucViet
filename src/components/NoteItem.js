@@ -9,7 +9,7 @@ class NoteItem extends Component {
         this.props.changeEditStatus();
 
         // action "Truyền nội dung cần sửa vào Form"
-        console.log(this.props.note);
+        this.props.getEditData(this.props.note);
     }
 
     render() {
@@ -40,7 +40,7 @@ class NoteItem extends Component {
                     aria-labelledby="note1"
                 >
                     <div className="card-body">
-                    {this.props.noteContent}
+                        {this.props.noteContent}
                     </div>
                 </div>
             </div>
@@ -58,9 +58,15 @@ const mapDispatchToProps = (dispatch) => {
     return {
         changeEditStatus: () => {
             dispatch({
-              type: "CHANGE_EDIT_STATUS"
+                type: "CHANGE_EDIT_STATUS"
             })
-          }
+        },
+        getEditData: (editObject) => {
+            dispatch({
+                type: "GET_EDIT_DATA",
+                editObject
+            })
+        }
     }
 }
 
