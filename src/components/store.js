@@ -1,20 +1,20 @@
 import { noteData } from './firebaseConnect';
 import { createStore } from 'redux';
-import { getDatabase, ref, push } from "firebase/database";
+import { push } from "firebase/database";
 
 // Khởi tạo reducer
 const noteInitialState = {
-    testConnect: 'testthoi'
+    isEdit: false
 };
 
 const allReducer = (state = noteInitialState, action) => {
     switch (action.type) {
         case "ADD_DATA":
-            // const database = getDatabase(noteData);
-            // const connectData = ref(database, 'dataForNote');
             push(noteData, action.nhanVaoItem);
             console.log(`Thêm dữ liệu ${JSON.stringify(action.nhanVaoItem)} thành công`);
             return state;
+        case "CHANGE_EDIT_STATUS":
+            return {...state, isEdit: !state.isEdit};
         default:
             return state;
     }
