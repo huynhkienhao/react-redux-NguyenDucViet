@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class NoteItem extends Component {
     render() {
@@ -18,7 +19,7 @@ class NoteItem extends Component {
                         </a>
                     </h5>
                     <div className='btn-group'>
-                        <button className='btn btn-success'>Sửa</button>
+                        <button className='btn btn-success' onClick={() => this.props.changeEditStatus()}>Sửa</button>
                         <button className='btn btn-danger'>Xóa</button>
                     </div>
                 </div>
@@ -29,7 +30,7 @@ class NoteItem extends Component {
                     aria-labelledby="note1"
                 >
                     <div className="card-body">
-                    {this.props.noteContent}
+                        {this.props.noteContent}
                     </div>
                 </div>
             </div>
@@ -37,4 +38,20 @@ class NoteItem extends Component {
     }
 }
 
-export default NoteItem;
+const mapStateToProps = (state) => {
+    return {
+        editStatus: state.isEdit
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeEditStatus: () => {
+            dispatch({
+                type: "CHANGE_EDIT_STATUS"
+            })
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NoteItem);
