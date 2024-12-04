@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class NoteItem extends Component {
+
+    // Hàm này gộp action "Hiển thị/Đóng Form" và action "Truyền nội dung cần sửa vào Form"
+    twoAction = () => {
+        // action "Hiển thị/Đóng Form"
+        this.props.changeEditStatus();
+
+        // action "Truyền nội dung cần sửa vào Form"
+        console.log(this.props.note);
+    }
+
     render() {
         return (
             <div className="card">
@@ -19,7 +29,7 @@ class NoteItem extends Component {
                         </a>
                     </h5>
                     <div className='btn-group'>
-                        <button className='btn btn-success' onClick={() => this.props.changeEditStatus()}>Sửa</button>
+                        <button className='btn btn-success' onClick={() => this.twoAction()}>Sửa</button>
                         <button className='btn btn-danger'>Xóa</button>
                     </div>
                 </div>

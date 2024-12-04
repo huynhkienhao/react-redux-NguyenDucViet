@@ -35,7 +35,13 @@ class NoteList extends Component {
         if (this.state.dataFirebase) {
             return this.state.dataFirebase.map((value, key) => {
                 return (
-                    <NoteItem key={key} index={key} noteContent={value.noteContent} noteTitle={value.noteTitle}/>
+                    <NoteItem 
+                        key={key} 
+                        index={key}
+                        note={value}
+                        noteContent={value.noteContent} 
+                        noteTitle={value.noteTitle}
+                    />
                 )
             })
         }
