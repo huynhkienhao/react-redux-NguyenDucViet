@@ -38,6 +38,7 @@ class NoteList extends Component {
                     <NoteItem
                         key={key}
                         index={key}
+                        note={value}
                         noteContent={value.noteContent}
                         noteTitle={value.noteTitle}
                     />
