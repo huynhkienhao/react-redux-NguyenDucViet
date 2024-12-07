@@ -8,7 +8,7 @@ class NoteItem extends Component {
         this.props.changeEditStatus();
 
         // action 2
-        console.log(this.props.note);
+        this.props.getEditData(this.props.note);
     }
     
     render() {
@@ -58,6 +58,12 @@ const mapDispatchToProps = (dispatch) => {
         changeEditStatus: () => {
             dispatch({
                 type: "CHANGE_EDIT_STATUS"
+            })
+        },
+        getEditData: (payload) => {
+            dispatch({
+                type: "GET_EDIT_DATA",
+                payload
             })
         }
     }
