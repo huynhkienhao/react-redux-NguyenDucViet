@@ -54,7 +54,8 @@ class NoteForm extends Component {
                             id="noteTitle"
                             aria-describedby="helpIdNoteTitle"
                             placeholder="Tiêu đề note"
-                            onChange={(event) => this.isChange(event)} />
+                            onChange={(event) => this.isChange(event)}
+                            defaultValue={this.props.editItem.noteTitle} />
                         <small id="helpIdNoteTitle" className="form-text text-muted">Điền tiêu đề vào đây</small>
                     </div>
                     <div className="form-group">
@@ -66,7 +67,7 @@ class NoteForm extends Component {
                             id="noteContent"
                             aria-describedby="helpIdNoteContent"
                             placeholder="Nội dung note"
-                            defaultValue={""}
+                            defaultValue={this.props.editItem.noteContent}
                             onChange={(event) => this.isChange(event)} />
                         <small id="helpIdNoteContent" className="form-text text-muted">Điền nội dung vào đây</small>
                     </div>
@@ -81,7 +82,7 @@ class NoteForm extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        testThoi: state.testConnect
+        editItem: state.editItem
     }
 }
 
