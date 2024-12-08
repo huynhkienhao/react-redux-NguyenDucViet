@@ -24,7 +24,7 @@ const allReducer = (state = noteInitialState, action) => {
 }
 
 // Khởi tạo store
-const store = createStore(allReducer);
+const store = createStore(allReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 // Subscribe
 store.subscribe(() => {
