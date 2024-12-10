@@ -15,9 +15,12 @@ const allReducer = (state = noteInitialState, action) => {
             console.log(`Thêm dữ liệu ${JSON.stringify(action.nhanVaoItem)} thành công`);
             return state;
         case "CHANGE_EDIT_STATUS":
-            return {...state, isEdit: !state.isEdit};
+            return { ...state, isEdit: !state.isEdit };
         case "GET_EDIT_DATA":
-            return {...state, editItem: action.payload};
+            return { ...state, editItem: action.payload };
+        case "EDIT":
+            console.log("Dữ liệu cần sửa mà Store nhận được là " + JSON.stringify(action.themItemEdit));
+            return { ...state, editItem: {} };
         default:
             return state;
     }

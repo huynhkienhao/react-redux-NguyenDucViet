@@ -8,7 +8,18 @@ class NoteForm extends Component {
         super(props);
         this.state = {
             noteTitle: '',
-            noteContent: ''
+            noteContent: '',
+            id: ''
+        }
+    }
+
+    componentDidMount = () => {
+        if (this.props.editItem) {
+            this.setState({
+                noteTitle: this.props.editItem.noteTitle,
+                noteContent: this.props.editItem.noteContent,
+                id: this.props.editItem.id
+            });
         }
     }
 
@@ -23,12 +34,24 @@ class NoteForm extends Component {
     }
 
     addData = (title, content) => {
-        let item = {};
+        // Nếu ID tồn tại là nút SỬA
+        if (this.state.id) {
+            // Gom dữ liệu vào một biến để đẩy lên store
+            let editObject = {}
+            editObject.id = this.state.id;
+            editObject.noteTitle = this.state.noteTitle;
+            editObject.noteContent = this.state.noteContent;
 
-        item.noteTitle = title;
-        item.noteContent = content;
-
-        this.props.addDataStore(item);
+            // Gọi hàm trong mapDispatchToProps
+            this.props.editDataStore(editObject);
+        } 
+        // Còn ID không tồn tại là nút THÊM MỚI
+        else {
+            let item = {};
+            item.noteTitle = title;
+            item.noteContent = content;
+            this.props.addDataStore(item);
+        }
     }
 
     pushData = (title, content) => {
@@ -48,14 +71,14 @@ class NoteForm extends Component {
                 <form>
                     <div className="form-group">
                         <label htmlFor="noteTitle">Tiêu đề note</label>
-                        <input 
+                        <input
                             type="text"
                             className="form-control"
                             name="noteTitle"
                             id="noteTitle"
                             aria-describedby="helpIdNoteTitle"
                             placeholder="Tiêu đề note"
-                            onChange={(event) => this.isChange(event)} 
+                            onChange={(event) => this.isChange(event)}
                             defaultValue={this.props.editItem.noteTitle}
                         />
                         <small id="helpIdNoteTitle" className="form-text text-muted">Điền tiêu đề vào đây</small>
@@ -69,7 +92,7 @@ class NoteForm extends Component {
                             id="noteContent"
                             aria-describedby="helpIdNoteContent"
                             placeholder="Nội dung note"
-                            onChange={(event) => this.isChange(event)} 
+                            onChange={(event) => this.isChange(event)}
                             defaultValue={this.props.editItem.noteContent}
                         />
                         <small id="helpIdNoteContent" className="form-text text-muted">Điền nội dung vào đây</small>
@@ -93,6 +116,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addDataStore: (nhanVaoItem) => {
             dispatch({ type: "ADD_DATA", nhanVaoItem })
+        },
+        editDataStore: (themItemEdit) => {
+            dispatch({ type: "EDIT", themItemEdit })
         }
     }
 }
