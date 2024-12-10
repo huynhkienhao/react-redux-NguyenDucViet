@@ -48,13 +48,16 @@ class NoteForm extends Component {
                 <form>
                     <div className="form-group">
                         <label htmlFor="noteTitle">Tiêu đề note</label>
-                        <input type="text"
+                        <input 
+                            type="text"
                             className="form-control"
                             name="noteTitle"
                             id="noteTitle"
                             aria-describedby="helpIdNoteTitle"
                             placeholder="Tiêu đề note"
-                            onChange={(event) => this.isChange(event)} />
+                            onChange={(event) => this.isChange(event)} 
+                            defaultValue={this.props.editItem.noteTitle}
+                        />
                         <small id="helpIdNoteTitle" className="form-text text-muted">Điền tiêu đề vào đây</small>
                     </div>
                     <div className="form-group">
@@ -66,8 +69,9 @@ class NoteForm extends Component {
                             id="noteContent"
                             aria-describedby="helpIdNoteContent"
                             placeholder="Nội dung note"
-                            defaultValue={""}
-                            onChange={(event) => this.isChange(event)} />
+                            onChange={(event) => this.isChange(event)} 
+                            defaultValue={this.props.editItem.noteContent}
+                        />
                         <small id="helpIdNoteContent" className="form-text text-muted">Điền nội dung vào đây</small>
                     </div>
                     <button type="reset" onClick={() => this.addData(this.state.noteTitle, this.state.noteContent)} className="btn btn-primary">
@@ -79,13 +83,13 @@ class NoteForm extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
-        testThoi: state.testConnect
+        editItem: state.editItem
     }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         addDataStore: (nhanVaoItem) => {
             dispatch({ type: "ADD_DATA", nhanVaoItem })
