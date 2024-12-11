@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NoteItem from './NoteItem';
 import { noteData } from './firebaseConnect';
-import { get } from "firebase/database";
+import { onValue } from "firebase/database";
 
 class NoteList extends Component {
 
@@ -14,7 +14,8 @@ class NoteList extends Component {
 
     componentDidMount() {
         let arrayData = [];
-        get(noteData).then((snapshot) => {
+        onValue(noteData, (snapshot) => {
+            arrayData.length = 0;
             snapshot.forEach(element => {
                 const key = element.key;
                 const noteTitle = element.val().noteTitle;

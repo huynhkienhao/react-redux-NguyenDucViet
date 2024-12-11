@@ -5,7 +5,7 @@ import { getDatabase, push, ref, update } from "firebase/database";
 // Khởi tạo reducer
 const noteInitialState = {
     isEdit: false,
-    editItem: {},
+    editItem: {}
 };
 
 const allReducer = (state = noteInitialState, action) => {
@@ -19,7 +19,7 @@ const allReducer = (state = noteInitialState, action) => {
         case "GET_EDIT_DATA":
             return { ...state, editItem: action.editObject };
         case "EDIT":
-            const data = ref(getDatabase(), 'dataForNote/' + action.getItem.id); 
+            const data = ref(getDatabase(), 'dataForNote/' + action.getItem.id);
             update(data, {
                 noteTitle: action.getItem.noteTitle,
                 noteContent: action.getItem.noteContent

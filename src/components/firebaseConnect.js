@@ -18,10 +18,11 @@ const firebaseConfig = {
     measurementId: "G-8CMH3H84BY"
 };
 
-// Initialize Firebase
+//Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
 
 // Lấy tham số đến CSDL
 const database = getDatabase(app);
 export const noteData = ref(database, 'dataForNote');
+

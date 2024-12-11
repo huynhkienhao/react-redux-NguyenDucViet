@@ -14,7 +14,6 @@ class NoteForm extends Component {
     }
 
     componentDidMount = () => {
-
         // Nếu editItem này đã có id -> là nút sửa
         if (this.props.editItem) {
             this.setState({
@@ -101,13 +100,13 @@ class NoteForm extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
         editItem: state.editItem
     }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         addDataStore: (nhanVaoItem) => {
             dispatch({ type: "ADD_DATA", nhanVaoItem })
