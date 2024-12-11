@@ -1,6 +1,6 @@
 import { noteData } from './firebaseConnect';
 import { createStore } from 'redux';
-import { push } from "firebase/database";
+import { getDatabase, push, ref, update } from "firebase/database";
 
 // Khởi tạo reducer
 const noteInitialState = {
@@ -19,7 +19,15 @@ const allReducer = (state = noteInitialState, action) => {
         case "GET_EDIT_DATA":
             return { ...state, editItem: action.editObject };
         case "EDIT":
-            console.log("Store nhận được dữ liệu sau khi sửa là " + JSON.stringify(action.getItem));
+            const data = ref(getDatabase(), 'dataForNote/' + action.getItem.id); 
+            update(data, {
+                noteTitle: action.getItem.noteTitle,
+                noteContent: action.getItem.noteContent
+            }).then(() => {
+                console.log("Store nhận được dữ liệu sau khi sửa là " + JSON.stringify(action.getItem));
+            }).catch((error) => {
+                console.error("Lỗi khi cập nhật dữ liệu: ", error);
+            });
             return { ...state, editItem: {} };
         default:
             return state;
