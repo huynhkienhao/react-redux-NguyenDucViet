@@ -14,10 +14,13 @@ const allReducer = (state = noteInitialState, action) => {
             push(noteData, action.nhanVaoItem);
             console.log(`Thêm dữ liệu ${JSON.stringify(action.nhanVaoItem)} thành công`);
             return state;
-        case "CHANGE_EDIT_STATUS":           
-            return {...state, isEdit: !state.isEdit};
-        case "GET_EDIT_DATA":           
-            return {...state, editItem: action.editObject};
+        case "CHANGE_EDIT_STATUS":
+            return { ...state, isEdit: !state.isEdit };
+        case "GET_EDIT_DATA":
+            return { ...state, editItem: action.editObject };
+        case "EDIT":
+            console.log("Store nhận được dữ liệu sau khi sửa là " + JSON.stringify(action.getItem));
+            return { ...state, editItem: {} };
         default:
             return state;
     }
